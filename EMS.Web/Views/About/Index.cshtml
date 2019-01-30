@@ -1,0 +1,168 @@
+﻿@{
+    Layout = null;
+}
+
+<script type="text/ng-template" id="modalDialogId">
+    <div class="ngdialog-message">
+        <h3>Add Column Details</h3>
+        <br />
+        <div class="container pull-left">
+
+            <table>
+                <tr>
+                    <td>
+                        Column Name :
+                    </td>
+                    <td>
+                        <input style="width:150px" ng-model="addColumn.ColumnName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            Column Type :
+                        </p>
+                    </td>
+                    <td>
+                        <select style="width:150px" ng-model="addColumn.Type" required name="Statedll">
+                            <option value="0" selected="">--Select--</option>
+                            <option value="Number" selected="">Number</option>
+                            <option value="String" selected="">String</option>
+                            <option value="Boolean" selected="">Boolean</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Editable :
+                    </td>
+                    <td>
+                        <select style="width:150px" ng-model="addColumn.Editable" required name="Statedll">
+                            <option value="0" selected="">--Select--</option>
+                            <option value="Yes" selected="">Yes</option>
+                            <option value="No" selected="">No</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br />
+    <table>
+        <tr>
+            <td>
+                <div class="ngdialog-buttons">
+                    <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('button')">Close</button>
+                    <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(addColumn)">Add Column</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</script>
+
+<div ng-controller="displyDynamicGrid">
+    <div>
+        <div class="col-sm-8">
+            <div>
+                <a style="border:none;" ng-click="openConfirmWithPreCloseCallbackOnScope()" class="btn btn-success">Add Column</a>
+
+                <input type="submit" ng-click="removeSelectedColumns()" value="RemoveColumn" class="btn btn-success">
+            </div>
+            <div class="table-responsive scroll play">
+                <table class="table" ng-hide="addTable">
+                    <thead>
+                        <tr>
+                            <th> <input type="checkbox" name="selectAll" ng-model="removeAllChks" /></th>
+                            <th>Column Name</th>
+                            <th>Column Type</th>
+                            <th>Editable</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="columns in AddedColumns" class="active">
+                            <td>
+                                <input type="checkbox" name="chkcolumnName" ng-model="removeSelectedColumns" ng-click="Toggle(columns)" />
+                            </td>
+                            <td>
+                                {{columns.ColumnName}}
+                            </td>
+                            <td>
+                                {{columns.Type}}
+                            </td>
+                            <td>
+                                {{columns.Editable}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <input type="button" value="Add Row" ng-click="AddNewRow(rowAdding)" class="btn btn-success" />
+                <input type="button" value="Delete Row" ng-click="removeAddedRow()" class="btn btn-success" />
+                <input type="button" value="Export to Json" class="btn btn-success" />
+            </div>
+
+            <div class="table-responsive scroll play">
+                <table>
+                    <tr>
+                        <td></td>
+                        <td ng-repeat="column in AddedColumns">
+                            {{column.ColumnName}}
+                        </td>
+                    </tr>
+                    <tr ng-repeat="row in addedRow">
+                        <td>
+                            <input type="checkbox" name="checkboxRow" ng-click="Toggle(coffee)" />
+                        </td>
+                        <td>
+                            {{row.String}}
+                        </td>
+                        <td>
+                            {{row.Number}}
+                        </td>
+                        <td>
+                            {{row.Date}}
+                        </td>
+                        <td>
+                            {{row.Selected}}
+                        </td>
+                    </tr>
+                    <tr ng-hide="HideNewRow">
+                        <td ng-hide="textBoxString">
+                            <input type="text" ng-model="rowAdding.String" />
+                        </td>
+                        <td ng-hide="textBoxNumber">
+                            <input type="text" ng-model="rowAdding.Number" />
+                        </td>
+                        <td ng-hide="hideDate">
+                            <input type="date" ng-model="rowAdding.Date" />
+                        </td>
+                        <td ng-hide="hideDropDown">
+                            <select ng-model="rowAdding.Selected">
+                                <option value="">-Select-</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

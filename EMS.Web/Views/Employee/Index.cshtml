@@ -1,0 +1,99 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="app">
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>EMS</title>
+</head>
+<body style="background-color:white">
+
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+
+    <div class="container-fluid col-sm-12">
+        <div class="top-bar">
+            <img src="~/Content/images/ems-logo.png" />
+        </div>
+    </div>
+
+        <div id="panels-wrapper" ng-controller="MainController">
+        <div class="col-sm-12 col-xs-12 panel settings">
+            <div>
+                <div class="panel-heading ">
+                    <ul data-tabs="tabs" class="nav nav-tabs" id="tabs">
+                        <li>
+                            <a data-toggle="tab" ui-sref="Employee">
+                                <h2>Employees</h2>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" ui-sref="About">
+                                <h2>Index</h2>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" ui-sref="Paging">
+                                <h2>Employee Paging</h2>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="tab-bg">
+                        <div class="tab-content" id="my-tab-content">
+                            <div ui-view=""></div>
+                            <div ui-view="edit"></div>
+                            <div ui-view="index"></div>
+                            <div ui-view="paging"></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
+<script src="~/Scripts/App/angular/angular-file-upload-shim.js"></script>
+<script src="~/Scripts/App/angular/angular.js"></script>
+<script src="~/Scripts/App/angular/ng-tags-input.js"></script>
+<script src="~/Scripts/App/angular/isteven-multi-select.js"></script>
+<script src="~/Scripts/App/angular/angular-file-upload.js"></script>
+<script src="~/Scripts/App/angular/angular-ui-router.js"></script>
+<script src="~/Scripts/App/app.js"></script>
+<script src="~/Scripts/App/filter/customFilter.js"></script>
+<script src="~/Scripts/App/angular/angular-sanitize.js"></script>
+<script src="~/Scripts/App/angular/ui-bootstrap-tpls-0.13.0.js"></script>
+<script src="~/Scripts/App/controller/employeeListController.js"></script>
+<script src="~/Scripts/App/controller/employeeDetailsController.js"></script>
+<script src="~/Scripts/App/controller/employeePagingListController.js"></script>
+<script src="~/Scripts/App/common/constants.js"></script>
+<script src="~/Scripts/App/factories/employeeFactory.js"></script>
+<script src="~/Scripts/App/controller/FileUploadController.js"></script>
+<script src="~/Scripts/App/angular/ui-bootstrap-tpls-0.13.0.js"></script>
+
+
+<script src="~/Content/model/js/ngDialog.js"></script>
+<link href="~/Content/model/css/ngDialog-custom-width.css" rel="stylesheet" />
+<link href="~/Content/model/css/ngDialog-theme-default.css" rel="stylesheet" />
+<link href="~/Content/model/css/ngDialog-theme-plain.css" rel="stylesheet" />
+<link href="~/Content/model/css/ngDialog.css" rel="stylesheet" />
+<script src="~/Scripts/App/controller/dialogController.js"></script>
+
+
+<link href="~/Content/css/ng-tags-input.css" rel="stylesheet" />
+<link href="~/Content/css/ng-tags-input.bootstrap.css" rel="stylesheet" />
+
+<link href="~/Content/css/isteven-multi-select.css" rel="stylesheet" />
+<link href="~/Content/css/simple-sidebar.css" rel="stylesheet" />
+
+

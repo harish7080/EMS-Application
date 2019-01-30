@@ -1,0 +1,137 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="col-sm-6" ng-controller="EmployeeDetailsController">
+    <div class="clearfix"></div>
+    <div class="panel_divider">
+        <form name="form" ng-submit="submitted = true" novalidate>
+            <div class="col-sm-12 padding-top">
+                
+                <div ng-hide="true">
+                    <label ng-model="employee.EmpId" />
+                </div>
+
+                <h1>Employee Details : </h1>
+                <div class="col-sm-10 no-padding padding-bottom">
+                    <div class="col-sm-4 no-padding">
+                        <label>First Name:</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <span>
+                            <input type="text" ng-model="employee.FirstName" required class="form-control" name="firstname" placeholder="Enter First Name">
+                        </span>
+                        <span style="color:red" ng-if="submitted && form.firstname.$error.required">First Name is required</span>
+                    </div>
+                </div>
+                <div class="col-sm-10 no-padding padding-bottom">
+                    <div class="col-sm-4 no-padding">
+                        <label>Last Name:</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <span>
+                            <input type="text" name="lastname" ng-model="employee.LastName" required class="form-control" placeholder="Enter Last Name">
+                        </span>
+                        <span style="color:red" ng-if="submitted && form.lastname.$error.required">Last Name is required</span>
+                    </div>
+                </div>
+                <div class="col-sm-10 no-padding padding-bottom">
+                    <div class="col-sm-4 no-padding">
+                        <label>Email</label>
+                    </div>
+
+                    <div class="col-sm-8">
+                        <span>
+                            <input type="email" ng-model="employee.Email" name="email" required class="form-control" placeholder="Enter Email Id">
+                        </span>
+                        <span style="color:red" ng-if="submitted && form.email.$error.email">Invalid email address</span>
+                        <span style="color:red" ng-if="submitted && form.email.$error.required">Email is required</span>
+                    </div>
+                </div>
+                <div class="col-sm-10 no-padding padding-bottom">
+                    <div class="col-sm-4 no-padding">
+                        <label>Gender</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <span>
+                            <input type="radio" ng-model="employee.Gender" value="1" name="Gender" required>Male
+                            <input type="radio" ng-model="employee.Gender" value="0" name="Gender" required>Female <br>
+                        </span>
+                        <span style="color:red" ng-show="submitted && form.Gender.$error.required">Gender Required</span>
+                    </div>
+                </div>
+
+                <div class="col-sm-10 no-padding padding-bottom">
+                    <div class="col-sm-4 no-padding">
+                        <label>Languages Known</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div ng-repeat="language in languages">
+                            <div class="action-checkbox">
+                                <input id="{{language.LanguageId}}" type="checkbox" value="{{language.LanguageId}}" ng-checked="employee.LanguageIds.indexOf(language.LanguageId) > -1" ng-click="toggleSelection(language.LanguageId)"/>
+                                {{language.LanguageName}}
+                            </div>
+                        </div>
+                        <span style="color:red" ng-if="submitted&&employee.LanguageIds==0">Please check atleast one language</span>
+                    </div>
+                </div>
+
+                <div class="col-sm-10 no-padding padding-bottom">
+                    <div class="col-sm-4 no-padding">
+                        <label>State</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <select name="stateid" ng-model="employee.StateId" required>
+                            <option value="">--select--</option>
+                            <option value="{{state.StateId}}" ng-repeat="state in states">{{state.StateName}}</option>
+                        </select>
+                        <span style="color:red" ng-if="submitted && form.stateid.$error.required">Select State</span>
+
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="clearfix"></div>
+                <div ng-controller="fileUploadController">
+                    <div class="col-sm-10 no-padding padding-bottom">
+                        <div class="col-sm-4 no-padding">
+                            <label>Files</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <span>
+                                <div ng-repeat="file in FilesList">
+                                    <img src="~/Content/images/Attach.png" />
+                                    <a ng-click="OpenAttachedFile(file.FilePathURL)">
+                                        {{file.FileName}}
+                                    </a>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div>
+                        <div class="col-sm-3 no-padding">
+                            <label>Attach file</label>
+                        </div>
+                        <div class="col-sm-8 padl30">
+                            <span>
+                                <input type="file" class="filestyle" ng-file-select="onFileSelect($files)" multiple>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="col-sm-10 no-padding padding-bottom padt20">
+                    <div class="col-sm-4 no-padding">
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="submit" value="Save" class="btn btn-success" ng-click="form.$valid && save(employee)">
+                    </div>
+                </div>
+                <div id="second_panel"></div>
+            </div>
+        </form>
+    </div>
+</div>

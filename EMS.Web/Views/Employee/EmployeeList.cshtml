@@ -1,0 +1,72 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div ng-controller="EmployeeListController">
+    <div class="clearfix"></div>
+    <div class="col-sm-6">
+
+        <br />
+        <br />
+
+        <table>
+            <tr>
+                <td align="left">
+                    <select name="ddl" ng-model="search.select">
+                        <option value="" selected>--select--</option>
+                        <option value="Like">Like</option>
+                        <option value="Equal">Equal</option>
+                    </select>
+                </td>
+                <td align="left">
+                    <input type="text" ng-model="search.search" class="form-control" placeholder="Search Here">
+                </td>
+            </tr>
+            <tr></tr>
+        </table>
+
+        <br />
+        <div class="btn btn-success pull-left"> <a style="border:none;" class="btn btn-success" ng-click="search(search)">Filter Employees</a> </div>
+
+        <br />
+        <br />
+        <br />
+        <div class="btn btn-success pull-right"> <a style="border:none;" class="btn btn-success" ng-click="toggleAdd()">Add Employee</a> </div>
+
+        <div class="clearfix"></div>
+        <div class="table-responsive scroll play">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="active" ng-repeat="employee in employees | filter:searchs:selects">
+                        <td>
+                            {{employee.FirstName}}
+                        </td>
+                        <td>
+                            {{employee.LastName}}
+                        </td>
+                        <td>
+                            {{employee.Email}}
+                        </td>
+                        <td>
+                            <a ng-click="toggleEdit(employee)">Edit</a>
+                        </td>
+                        <td>
+                            <a ng-click="toggleDelete(employee.EmpId)" ng-confirm-click="Would you like to delete?">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

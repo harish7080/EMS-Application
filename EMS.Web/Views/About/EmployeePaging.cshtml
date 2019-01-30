@@ -1,0 +1,101 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div ng-controller="EmployeePagingListController">
+
+    <table>
+        <tr>
+            <td>
+                Select Number to show items Per Page
+            </td>
+            <td align="center">
+                <select ng-model="PerPageItems" ng-change="pageChanged(currentPage,PerPageItems)">
+                    <option value="">--select--</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <br />
+
+    <form>
+
+        <tags-input ng-model="stateTags" display-property="State">
+            <auto-complete source="loadTags($query)"></auto-complete>
+        </tags-input>
+
+        <br />
+        <br />
+
+        <div isteven-multi-select
+             input-model="employeeNames"
+             output-model="selectedEmployeeNames"
+             button-label="Name"
+             item-label="Name"
+             tick-property="ticked"
+             output-properties="Name">
+        </div>
+
+        <br />
+        <br />
+
+        <input style="height:35px" type="submit" value="Search" ng-click="search(stateTags,selectedEmployeeNames)" class="btn btn-success">
+
+        <br />
+        <br />
+
+    </form>
+
+    <div style="width:800px">
+        <div class="table-responsive scroll play" style="border:2px solid" ng-show="filteredItems > 0">
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>State</th>
+                </tr>
+                <tr ng-repeat="employee in employees | limitTo:PerPageItems">
+                    <td>
+                        {{employee.Id}}
+                    </td>
+                    <td>
+                        {{employee.Name}}
+                    </td>
+                    <td>
+                        {{employee.Email}}
+                    </td>
+                    <td>
+                        {{employee.State}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <pagination page="currentPage" total-items="filteredItems" ng-model="currentPage" items-per-page="PerPageItems" ng-change="pageChanged(currentPage,PerPageItems)" total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
