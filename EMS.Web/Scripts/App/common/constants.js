@@ -24,4 +24,6 @@ var messages = new function()
     this.deleteSuccessMessage = "Deleted Successfully";
 }
 
+// for fetching the employees information
+
 
